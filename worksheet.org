@@ -1,0 +1,171 @@
+#+SETUPFILE: ./themes/theme-readtheorg.setup
+#+TITLE: Code Challenge from Capcom
+#+AUTHOR: Matthew Burns
+#+EMAIL: matthewburns@gmail.com
+#+DATE: 2018-03-21
+#+LANGUAGE: en
+
+* Description
+Implement the logic for the `FinancialSummary`.
+There are pending specs that you should make pass.
+The specs are non-exhaustive, (hint hint).
+
+* Resouces
+** TODO Understand the code
+*** Files Involved
+*** Tables Involved
+* Hints
+* Work
+** DONE Get and decompress the archive
+#+BEGIN_SRC sh
+tar -xvzf ./interviews-ruby-financial_summary-0.4.tar.gz
+#+END_SRC
+
+#+RESULTS:
+| interviews-ruby-financial_summary-0.4/                                                            |
+| interviews-ruby-financial_summary-0.4/.circleci/                                                  |
+| interviews-ruby-financial_summary-0.4/.circleci/config.yml                                        |
+| interviews-ruby-financial_summary-0.4/.gitignore                                                  |
+| interviews-ruby-financial_summary-0.4/.rspec                                                      |
+| interviews-ruby-financial_summary-0.4/.ruby-version                                               |
+| interviews-ruby-financial_summary-0.4/Gemfile                                                     |
+| interviews-ruby-financial_summary-0.4/Gemfile.lock                                                |
+| interviews-ruby-financial_summary-0.4/README.md                                                   |
+| interviews-ruby-financial_summary-0.4/Rakefile                                                    |
+| interviews-ruby-financial_summary-0.4/app/                                                        |
+| interviews-ruby-financial_summary-0.4/app/assets/                                                 |
+| interviews-ruby-financial_summary-0.4/app/assets/config/                                          |
+| interviews-ruby-financial_summary-0.4/app/assets/config/manifest.js                               |
+| interviews-ruby-financial_summary-0.4/app/assets/images/                                          |
+| interviews-ruby-financial_summary-0.4/app/assets/images/.keep                                     |
+| interviews-ruby-financial_summary-0.4/app/assets/javascripts/                                     |
+| interviews-ruby-financial_summary-0.4/app/assets/javascripts/application.js                       |
+| interviews-ruby-financial_summary-0.4/app/assets/javascripts/cable.js                             |
+| interviews-ruby-financial_summary-0.4/app/assets/javascripts/channels/                            |
+| interviews-ruby-financial_summary-0.4/app/assets/javascripts/channels/.keep                       |
+| interviews-ruby-financial_summary-0.4/app/assets/stylesheets/                                     |
+| interviews-ruby-financial_summary-0.4/app/assets/stylesheets/application.css                      |
+| interviews-ruby-financial_summary-0.4/app/channels/                                               |
+| interviews-ruby-financial_summary-0.4/app/channels/application_cable/                             |
+| interviews-ruby-financial_summary-0.4/app/channels/application_cable/channel.rb                   |
+| interviews-ruby-financial_summary-0.4/app/channels/application_cable/connection.rb                |
+| interviews-ruby-financial_summary-0.4/app/controllers/                                            |
+| interviews-ruby-financial_summary-0.4/app/controllers/application_controller.rb                   |
+| interviews-ruby-financial_summary-0.4/app/controllers/concerns/                                   |
+| interviews-ruby-financial_summary-0.4/app/controllers/concerns/.keep                              |
+| interviews-ruby-financial_summary-0.4/app/helpers/                                                |
+| interviews-ruby-financial_summary-0.4/app/helpers/application_helper.rb                           |
+| interviews-ruby-financial_summary-0.4/app/jobs/                                                   |
+| interviews-ruby-financial_summary-0.4/app/jobs/application_job.rb                                 |
+| interviews-ruby-financial_summary-0.4/app/mailers/                                                |
+| interviews-ruby-financial_summary-0.4/app/mailers/application_mailer.rb                           |
+| interviews-ruby-financial_summary-0.4/app/models/                                                 |
+| interviews-ruby-financial_summary-0.4/app/models/application_record.rb                            |
+| interviews-ruby-financial_summary-0.4/app/models/concerns/                                        |
+| interviews-ruby-financial_summary-0.4/app/models/concerns/.keep                                   |
+| interviews-ruby-financial_summary-0.4/app/models/financial_summary.rb                             |
+| interviews-ruby-financial_summary-0.4/app/models/transaction.rb                                   |
+| interviews-ruby-financial_summary-0.4/app/models/user.rb                                          |
+| interviews-ruby-financial_summary-0.4/app/models/wallet.rb                                        |
+| interviews-ruby-financial_summary-0.4/app/views/                                                  |
+| interviews-ruby-financial_summary-0.4/app/views/layouts/                                          |
+| interviews-ruby-financial_summary-0.4/app/views/layouts/application.html.erb                      |
+| interviews-ruby-financial_summary-0.4/app/views/layouts/mailer.html.erb                           |
+| interviews-ruby-financial_summary-0.4/app/views/layouts/mailer.text.erb                           |
+| interviews-ruby-financial_summary-0.4/bin/                                                        |
+| interviews-ruby-financial_summary-0.4/bin/bundle                                                  |
+| interviews-ruby-financial_summary-0.4/bin/rails                                                   |
+| interviews-ruby-financial_summary-0.4/bin/rake                                                    |
+| interviews-ruby-financial_summary-0.4/bin/setup                                                   |
+| interviews-ruby-financial_summary-0.4/bin/spring                                                  |
+| interviews-ruby-financial_summary-0.4/bin/update                                                  |
+| interviews-ruby-financial_summary-0.4/bin/yarn                                                    |
+| interviews-ruby-financial_summary-0.4/config.ru                                                   |
+| interviews-ruby-financial_summary-0.4/config/                                                     |
+| interviews-ruby-financial_summary-0.4/config/application.rb                                       |
+| interviews-ruby-financial_summary-0.4/config/boot.rb                                              |
+| interviews-ruby-financial_summary-0.4/config/cable.yml                                            |
+| interviews-ruby-financial_summary-0.4/config/database.yml                                         |
+| interviews-ruby-financial_summary-0.4/config/environment.rb                                       |
+| interviews-ruby-financial_summary-0.4/config/environments/                                        |
+| interviews-ruby-financial_summary-0.4/config/environments/development.rb                          |
+| interviews-ruby-financial_summary-0.4/config/environments/production.rb                           |
+| interviews-ruby-financial_summary-0.4/config/environments/test.rb                                 |
+| interviews-ruby-financial_summary-0.4/config/initializers/                                        |
+| interviews-ruby-financial_summary-0.4/config/initializers/application_controller_renderer.rb      |
+| interviews-ruby-financial_summary-0.4/config/initializers/assets.rb                               |
+| interviews-ruby-financial_summary-0.4/config/initializers/backtrace_silencers.rb                  |
+| interviews-ruby-financial_summary-0.4/config/initializers/cookies_serializer.rb                   |
+| interviews-ruby-financial_summary-0.4/config/initializers/filter_parameter_logging.rb             |
+| interviews-ruby-financial_summary-0.4/config/initializers/inflections.rb                          |
+| interviews-ruby-financial_summary-0.4/config/initializers/mime_types.rb                           |
+| interviews-ruby-financial_summary-0.4/config/initializers/wrap_parameters.rb                      |
+| interviews-ruby-financial_summary-0.4/config/locales/                                             |
+| interviews-ruby-financial_summary-0.4/config/locales/en.yml                                       |
+| interviews-ruby-financial_summary-0.4/config/puma.rb                                              |
+| interviews-ruby-financial_summary-0.4/config/routes.rb                                            |
+| interviews-ruby-financial_summary-0.4/config/secrets.yml                                          |
+| interviews-ruby-financial_summary-0.4/config/spring.rb                                            |
+| interviews-ruby-financial_summary-0.4/db/                                                         |
+| interviews-ruby-financial_summary-0.4/db/migrate/                                                 |
+| interviews-ruby-financial_summary-0.4/db/migrate/20171103184432_create_users.rb                   |
+| interviews-ruby-financial_summary-0.4/db/migrate/20171103185508_create_wallets.rb                 |
+| interviews-ruby-financial_summary-0.4/db/migrate/20171103190622_create_transactions.rb            |
+| interviews-ruby-financial_summary-0.4/db/migrate/20180302015735_remove_action_from_transaction.rb |
+| interviews-ruby-financial_summary-0.4/db/schema.rb                                                |
+| interviews-ruby-financial_summary-0.4/db/seeds.rb                                                 |
+| interviews-ruby-financial_summary-0.4/lib/                                                        |
+| interviews-ruby-financial_summary-0.4/lib/assets/                                                 |
+| interviews-ruby-financial_summary-0.4/lib/assets/.keep                                            |
+| interviews-ruby-financial_summary-0.4/lib/tasks/                                                  |
+| interviews-ruby-financial_summary-0.4/lib/tasks/.keep                                             |
+| interviews-ruby-financial_summary-0.4/log/                                                        |
+| interviews-ruby-financial_summary-0.4/log/.keep                                                   |
+| interviews-ruby-financial_summary-0.4/package.json                                                |
+| interviews-ruby-financial_summary-0.4/public/                                                     |
+| interviews-ruby-financial_summary-0.4/public/404.html                                             |
+| interviews-ruby-financial_summary-0.4/public/422.html                                             |
+| interviews-ruby-financial_summary-0.4/public/500.html                                             |
+| interviews-ruby-financial_summary-0.4/public/apple-touch-icon-precomposed.png                     |
+| interviews-ruby-financial_summary-0.4/public/apple-touch-icon.png                                 |
+| interviews-ruby-financial_summary-0.4/public/favicon.ico                                          |
+| interviews-ruby-financial_summary-0.4/public/robots.txt                                           |
+| interviews-ruby-financial_summary-0.4/spec/                                                       |
+| interviews-ruby-financial_summary-0.4/spec/factories.rb                                           |
+| interviews-ruby-financial_summary-0.4/spec/models/                                                |
+| interviews-ruby-financial_summary-0.4/spec/models/financial_summary_spec.rb                       |
+| interviews-ruby-financial_summary-0.4/spec/models/transaction_spec.rb                             |
+| interviews-ruby-financial_summary-0.4/spec/models/user_spec.rb                                    |
+| interviews-ruby-financial_summary-0.4/spec/models/wallet_spec.rb                                  |
+| interviews-ruby-financial_summary-0.4/spec/rails_helper.rb                                        |
+| interviews-ruby-financial_summary-0.4/spec/spec_helper.rb                                         |
+| interviews-ruby-financial_summary-0.4/spec/support/                                               |
+| interviews-ruby-financial_summary-0.4/spec/support/factory_bot.rb                                 |
+| interviews-ruby-financial_summary-0.4/tmp/                                                        |
+| interviews-ruby-financial_summary-0.4/tmp/.keep                                                   |
+| interviews-ruby-financial_summary-0.4/vendor/                                                     |
+| interviews-ruby-financial_summary-0.4/vendor/.keep                                                |
+** IN PROGRESS What does done look like?
+** DONE Setup github repo and initial check in
+** IN PROGRESS Start up local develoment environment
+** TODO Tests
+** TODO Code
+** TODO Checkin
+   :PROPERTIES:
+   :Ticket:   [[bugzid:]]
+   :Owner:    Matt
+   :Time_spent: 0
+   :Approved: [X]
+   :Status:   Not Started Yet
+   :END:
+*** TODO Grab lastest Work
+*** TODO Merge work into master
+*** TODO Delete branches
+** TODO Bugs
+* Setup
+  :PROPERTIES:
+  :COLUMNS:  %20ITEM %20Ticket %9Approved(Approved?){X} %Owner %11Status %10Time_Spent{:}
+  :Owner_ALL: Matt
+  :Status_ALL: "In progress" "Not started yet" "Finished" ""
+  :Approved_ALL: "[ ]" "[X]"
+  :END:
