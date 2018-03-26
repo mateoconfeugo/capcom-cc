@@ -1,9 +1,8 @@
 require 'rails_helper'
-
+require 'financial_summary'
 describe FinancialSummary do
-  it 'summarizes over one day' do
-    pending('Not implemented yet')
 
+  it 'summarizes over one day' do
     user = create(:user)
 
     Timecop.freeze(Time.now) do
@@ -21,8 +20,6 @@ describe FinancialSummary do
   end
 
   it 'summarizes over seven days' do
-    pending('Not implemented yet')
-
     user = create(:user)
 
     Timecop.freeze(5.days.ago) do
@@ -40,8 +37,6 @@ describe FinancialSummary do
   end
 
   it 'summarizes over lifetime' do
-    pending('Not implemented yet')
-
     user = create(:user)
 
     Timecop.freeze(30.days.ago) do
